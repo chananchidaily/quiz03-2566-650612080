@@ -2,9 +2,11 @@ import jwt from "jsonwebtoken";
 
 import { DB, readDB } from "@/app/libs/DB";
 import { NextResponse } from "next/server";
+import { nanoid } from "nanoid";
 
 export const POST = async (request) => {
   readDB();
+  const body = await request.json();
 
   // return NextResponse.json(
   //   {
@@ -14,7 +16,7 @@ export const POST = async (request) => {
   //   { status: 400 }
   // );
 
-  const token = "Replace this with token creation";
+  const token = nanoid();
 
   return NextResponse.json({ ok: true, token });
 };
